@@ -1,0 +1,8 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="csrf-token" content="{{ csrf_token }}"><title>{{ title }} · 校园失物招领</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<script defer src="{{ url_for('static', filename='js/app.js') }}"></script>
+<script defer src="{{ url_for('static', filename='js/image-reader.js') }}"></script></head>
+<body><div class="app"><header class="header">{% if request.path != '/' %}<a class="back" href="/" aria-label="返回首页">‹</a>{% endif %}<strong>{{ title }}</strong></header>
+<main>{% block content %}{% endblock %}</main>
+<nav class="nav" aria-label="主导航"><a href="/" class="{{ 'current' if request.path=='/' }}"><span class="symbol">⌂</span>首页</a><a href="/publish" class="{{ 'current' if request.path=='/publish' }}"><span class="plus">+</span>发布</a><a href="/my-posts" class="{{ 'current' if request.path=='/my-posts' }}"><span class="symbol">♙</span>我的发布</a></nav></div><div id="toast" role="status" hidden></div></body></html>

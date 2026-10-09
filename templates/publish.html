@@ -1,0 +1,11 @@
+{% extends 'base.html' %}{% block content %}
+<form id="publishForm" enctype="multipart/form-data">
+<div class="types"><label class="type"><span>♡</span><input type="radio" name="type" value="寻物" checked>我丢了东西<small>发布寻物信息</small></label><label class="type"><span>⊙</span><input type="radio" name="type" value="招领">我捡到东西<small>发布招领信息</small></label></div>
+<label for="name">物品名称 <em>*</em></label><input id="name" name="name" required maxlength="40" placeholder="如：学生证 / 浅蓝色折叠伞">
+<label for="cat">物品类别</label><select id="cat" name="cat">{% for cat in categories %}<option>{{ cat }}</option>{% endfor %}</select>
+<label for="place">地点 <em>*</em></label><input id="place" name="place" required maxlength="60" placeholder="如：梧桐餐厅西侧 / 明理楼">
+<label for="time">遗失或拾取时间</label><input id="time" name="time" maxlength="40" placeholder="如：10月5日 14:20">
+<label for="description">详细描述</label><textarea id="description" name="description" maxlength="500" placeholder="补充颜色、外观、丢失或拾取经过…"></textarea>
+<label for="image">物品图片（可选）</label><input type="file" id="image" name="image" accept="image/jpeg,image/png,image/webp"><p class="meta">JPG / PNG / WebP，最大 5MB。</p><img id="imagePreview" class="preview" alt="待上传图片预览" hidden><button type="button" id="clearImage" class="secondary" hidden>取消图片</button>
+<label for="contact">联系方式 <em>*</em></label><input id="contact" name="contact" required maxlength="80" placeholder="手机号或微信号">
+<p class="meta">联系方式供查看详情的用户联系你。请勿填写身份证号等无关信息。</p><div id="formError" class="error" role="alert" hidden></div><button type="submit" class="primary">发布信息</button></form>{% endblock %}
