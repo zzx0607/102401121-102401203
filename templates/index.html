@@ -1,0 +1,10 @@
+{% extends 'base.html' %}{% from '_cards.html' import card %}{% block content %}
+<form method="get" id="searchForm">
+<div class="search"><input name="q" value="{{ filters.q }}" aria-label="搜索关键词" placeholder="搜索物品名称、地点…" maxlength="100"><button>搜索</button></div>
+<div class="tabs">{% for kind in ['', '寻物','招领'] %}<button class="chip {{ 'active' if filters.type==kind }}" name="type" value="{{ kind }}">{{ kind or '全部' }}</button>{% endfor %}</div>
+<div class="filters"><label>物品类别<select name="cat"><option value="">全部类别</option>{% for cat in categories %}<option {{ 'selected' if filters.cat==cat }}>{{ cat }}</option>{% endfor %}</select></label>
+<label>信息状态<select name="status"><option value="">全部状态</option><option value="active" {{ 'selected' if filters.status=='active' }}>进行中</option><option value="done" {{ 'selected' if filters.status=='done' }}>已结束</option></select></label></div>
+<label for="place">地点筛选</label><input id="place" name="place" value="{{ filters.place }}" placeholder="如：明理楼 / 餐厅" maxlength="60">
+<button class="secondary" name="type" value="{{ filters.type }}">应用筛选</button></form>
+<p class="hint">共 {{ posts|length }} 条信息 · 联系前请查看状态</p>
+{% for post in posts %}{{ card(post) }}{% else %}<div class="empty">没有找到相关物品<br><small>试试其他关键词，或者发布一条信息</small><a class="secondary" href="/">清空搜索条件</a><a class="primary" href="/publish">发布信息</a></div>{% endfor %}{% endblock %}

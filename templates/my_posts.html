@@ -1,0 +1,4 @@
+{% extends 'base.html' %}{% from '_cards.html' import card %}{% block content %}
+<div class="hint">仅显示当前浏览器身份发布的信息。清除 Cookie 后无法管理原记录。</div>
+{% for post in posts %}<section class="panel paragraph mine">{{ card(post) }}<div class="actions">{% if not post.done %}<button class="smallbtn" data-finish="{{ post.id }}">标记为{{ '已找到' if post.type=='寻物' else '已归还' }}</button>{% endif %}<button class="smallbtn danger" data-delete="{{ post.id }}">删除</button></div></section>
+{% else %}<div class="empty">你还没有发布信息<a class="primary" href="/publish">发布一条信息</a></div>{% endfor %}{% endblock %}
